@@ -1,6 +1,7 @@
 # content_check.py
 from openai import OpenAI
 import re
+import json
 from pydantic import BaseModel
 
 # class ContentModel(BaseModel):
@@ -115,6 +116,7 @@ class ContentCheck:
             llm_response = response.choices[0].message.content
             # Using re.findall to extract list items
             parse_response = re.findall(r'(\[.*\])', llm_response, re.DOTALL)
+            parse_response = parse_response[0]
 
             return parse_response
         except Exception as e:
@@ -135,7 +137,7 @@ def check_content(content: str):
     """
     content_checker = ContentCheck()
     # Using re.findall to extract list items
-    return content_checker.check_content(content)
+    return json.loads(content_checker.check_content(content))
 
 if __name__ == '__main__':
     content = '''Where the extra $4.7 billion in gender-based violence funding is going
@@ -148,5 +150,6 @@ Forty-seven women have been violently killed in Australia since the start of the
 
 The prime minister said it was crucial to have an "all hands on deck" approach, with collaboration between states, territories, and the federal government essential.'''
     llm_output = check_content(content)
+    print(llm_output)
 
 
