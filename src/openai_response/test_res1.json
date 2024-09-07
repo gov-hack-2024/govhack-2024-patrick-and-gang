@@ -1,0 +1,36 @@
+[
+  {
+    "mistake": "Australians fleeing domestic violence will soon receive additional support as Prime Minister Anthony Albanese announced a $4.7 billion boost in funding.",
+    "suggestion": "Australians escaping domestic violence will soon get more support with a $4.7 billion funding boost announced by Prime Minister Anthony Albanese.",
+    "mistake_type": [
+      "Language and Tone"
+    ],
+    "explanation": "The word 'escaping' is more relatable and easier to understand than 'fleeing'. The sentence is simplified for better accessibility."
+  },
+  {
+    "mistake": "Albanese met with premiers and chief ministers on Friday morning to discuss what he's repeatedly labelled a 'national crisis', and reassert his government's commitment to end family, domestic and sexual violence 'in a generation'.",
+    "suggestion": "Albanese met with state leaders on Friday morning to talk about what he calls a 'national crisis' and to confirm his government's promise to end family, domestic, and sexual violence within a generation.",
+    "mistake_type": [
+      "Language and Tone",
+      "Grammar, Punctuation, and Formatting"
+    ],
+    "explanation": "The term 'state leaders' is simpler and more inclusive. The phrase 'to confirm his government's promise' is clearer than 'reassert his government's commitment'. The sentence is also broken down for better readability."
+  },
+  {
+    "mistake": "Forty-seven women have been violently killed in Australia since the start of the year, according to the advocacy group Destroy the Joint's project Counting Dead Women.",
+    "suggestion": "Since the start of the year, 47 women have been killed in Australia, according to the advocacy group Destroy the Joint's Counting Dead Women project.",
+    "mistake_type": [
+      "Grammar, Punctuation, and Formatting"
+    ],
+    "explanation": "The number '47' is written in digits for clarity. The sentence structure is simplified for better flow and readability."
+  },
+  {
+    "mistake": "The prime minister said it was crucial to have an 'all hands on deck' approach, with collaboration between states, territories, and the federal government essential.",
+    "suggestion": "The Prime Minister said it is important to have everyone working together, with cooperation between states, territories, and the federal government.",
+    "mistake_type": [
+      "Language and Tone",
+      "Compliance with Style Manual"
+    ],
+    "explanation": "The phrase 'all hands on deck' is replaced with 'everyone working together' for clarity. The term 'cooperation' is simpler and more inclusive. The sentence is also made more direct."
+  }
+]
