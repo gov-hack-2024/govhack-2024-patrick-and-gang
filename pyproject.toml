@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "gov-hackathon-project"
+version = "0.1.0"
+description = "A project for the Australian Government Hackathon"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.103.0"
+uvicorn = "^0.23.0"
+streamlit = "^1.26.0"
+pandas = "^2.1.0"
+numpy = "^1.26.0"
+scikit-learn = "^1.4.0"
+requests = "^2.31.0"
+python-dotenv = "^1.0.0"
+openai = "^1.43.0"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
