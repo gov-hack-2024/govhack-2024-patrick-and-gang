@@ -85,7 +85,8 @@ def page_rewrite_content():
     text_files = [''] + [f for f in os.listdir(folder_path) if f.endswith('.txt')]
 
     # Create a dropdown menu with a default empty string option
-    selected_file = st.selectbox('Select a text file:', text_files)
+    st.write('Select a text file:')
+    selected_file = st.selectbox('content_editor_box', text_files,label_visibility = 'collapsed')
 
     # Check if a valid file is selected
     if selected_file:
@@ -94,7 +95,8 @@ def page_rewrite_content():
         with open(file_path, 'r') as file:
             file_content = file.read()
 
-    text_input = st.text_area('Edit Content',file_content if selected_file else '', height=200)
+    st.write('Edit Content')
+    text_input = st.text_area('content_editor_text',file_content if selected_file else '', height=200,label_visibility = 'collapsed')
     if st.button("Rewrite Content by AI"):
         with st.spinner('Processing...'):
             llm_output = check_content(text_input)
@@ -125,7 +127,8 @@ def page_translator():
     text_files = [''] + [f for f in os.listdir(folder_path) if f.endswith('.txt')]
 
     # Create a dropdown menu with a default empty string option
-    selected_file = st.selectbox('Select a text file:', text_files)
+    st.write('Select a text file:')
+    selected_file = st.selectbox('translator_box:', text_files,label_visibility ='collapsed')
 
     # Check if a valid file is selected
     if selected_file:
@@ -134,9 +137,11 @@ def page_translator():
         with open(file_path, 'r') as file:
             file_content = file.read()
 
-    text_input = st.text_area('Edit Content',file_content if selected_file else '', height=200)
+    st.write('Edit Content')
+    text_input = st.text_area('translator_text',file_content if selected_file else '', height=200,label_visibility ='collapsed')
     trans_obj = Translator()
-    select_lang = st.selectbox('Language', trans_obj.language_list)
+    st.write('Language')
+    select_lang = st.selectbox('Language', trans_obj.language_list, label_visibility ='collapsed')
     translate_button = st.button("Translate Content")
     if translate_button:
         with st.spinner('Processing...'):
@@ -160,7 +165,8 @@ def page_reader():
     text_files = [''] + [f for f in os.listdir(folder_path) if f.endswith('.txt')]
 
     # Create a dropdown menu with a default empty string option
-    selected_file = st.selectbox('Select a text file:', text_files)
+    st.write('Select text file:')
+    selected_file = st.selectbox('reader_box', text_files, label_visibility = 'collapsed')
 
     # Check if a valid file is selected
     if selected_file:
@@ -169,7 +175,8 @@ def page_reader():
         with open(file_path, 'r') as file:
             file_content = file.read()
 
-    text_input = st.text_area('Edit Content',file_content if selected_file else '', height=200)
+    st.write('Edit Content')
+    text_input = st.text_area('reader_text',file_content if selected_file else '', height=200,label_visibility ='collapsed')
     tts_button =st.button("Text to Speech")
     if tts_button:
         with st.spinner('Processing...'):
@@ -226,23 +233,50 @@ def main():
             }
         </style>
     """, unsafe_allow_html=True)
+    # st.markdown("""
+    #     <style>
+    #     .stButton>button {
+    #         background-color: #4CAF50;
+    #         color: white;
+    #         padding: 10px 24px;
+    #         border-radius: 8px;
+    #     }
+    #     .stTextArea textarea {
+    #         background-color: #F0F0F0;
+    #     }
+    #     </style>
+    #     """, unsafe_allow_html=True)
 
     # Set OpenAI API Key from secrets
     os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
 
     # Create a sidebar for page navigation
-    page = st.sidebar.selectbox("Choose a page", ["Home","AI Content Creator","AI Content Editor", "AI Content Translator","AI Content Reader"])
+    # page = st.sidebar.selectbox("Choose a page", ["Home","AI Content Creator","AI Content Editor", "AI Content Translator","AI Content Reader"])
+    home, content_creator_tab, content_editor_tab, content_translator_tab, content_reader_tab = st.tabs(
+        ["Home","AI Content Creator","AI Content Editor", "AI Content Translator","AI Content Reader"])
 
     # Render the selected page
-    if page == "Home":
+    # if page == "Home":
+    #     page_home()
+    # elif page == "AI Content Creator":
+    #     page_content_creator()
+    # elif page == "AI Content Editor":
+    #     page_rewrite_content()
+    # elif page == "AI Content Translator":
+    #     page_translator()
+    # elif page == "AI Content Reader":
+    #     page_reader()
+
+    # Render the selected page
+    with home:
         page_home()
-    elif page == "AI Content Creator":
+    with content_creator_tab:
         page_content_creator()
-    elif page == "AI Content Editor":
+    with content_editor_tab:
         page_rewrite_content()
-    elif page == "AI Content Translator":
+    with content_translator_tab:
         page_translator()
-    elif page == "AI Content Reader":
+    with content_reader_tab:
         page_reader()
 
 
