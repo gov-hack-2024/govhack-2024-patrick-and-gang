@@ -1,9 +1,14 @@
-# Government Hackathon Template
+# Government Hackathon 2024 Project
 
-This is a template for Gov Hack 2024
+Patrick and Gang leverage the Australian writing style by empowering GenAI.
+
+## Meet the team
+  - [Pichaphop Sunthornjittanon (Patrick)](https://www.linkedin.com/in/pichaphop/)
+  - [Supanuth Amorntiyanggoon (Scott)](https://www.linkedin.com/in/supanutha/)
+  - [Jakrapun Sangchan (Jack)](https://www.linkedin.com/in/jakrapun-s/)
+  - [Jirarote Jirasirikul (JJ)](https://www.linkedin.com/in/jirarotej/)
 
 ## Project Structure
-
 The project directory is organized as follows:
 
 - **`.github/`**: Contains GitHub Actions workflows for Continuous Integration.
@@ -15,30 +20,15 @@ The project directory is organized as follows:
   - `processed/`: Contains processed data files.
     - `cleaned_data.csv`: Example of processed data.
 
-- **`docs/`**: Documentation related to the project.
-  - `API_Documentation.md`: Documentation for API endpoints or other technical details.
-
-- **`notebooks/`**: Jupyter notebooks for data exploration and analysis.
-  - `data_analysis.ipynb`: Example notebook for analyzing data.
-
 - **`src/`**: Source code for the project.
   - `__init__.py`: Initializes the `src` directory as a package.
-  - `app.py`: Streamlit application script for the frontend.
-  - `data_loader.py`: Module for loading and preprocessing data.
+  - `app.py`: Streamlit application script for the front end.
+  - `content_check.py`: OpenAI application to set up prompt OpenAI parameter and return the response.
+  - `content_creator.py`: OpenAI application to set up fassi backend on the fly database and generate the content based on the objective.
+  - `text_to_speech.py`: Google text-to-speech application to transform text file to voice .mp3.
+  - `translator.py`: OpenAI application to translate English into the designated language.
   - `main.py`: FastAPI application script for the backend.
-  - `models/`: Contains machine learning model code.
-    - `ml_model.py`: Defines and handles the machine learning model.
-  - `services/`: Contains code for interacting with external APIs.
-    - `api_service.py`: Example service for external API interactions.
-  - `utils/`: Utility functions used across the project.
-    - `helpers.py`: Example utility functions.
-  - `routers/`: FastAPI route handlers.
-    - `prediction.py`: API route for making predictions.
 
-- **`tests/`**: Unit and integration tests.
-  - `test_app.py`: Tests for the Streamlit app.
-  - `test_ml_model.py`: Tests for the machine learning model.
-  - `test_api.py`: Tests for FastAPI endpoints.
 
 - **`.env.example`**: Example environment variable file. Copy and rename to `.env` and set your configuration.
 
@@ -51,8 +41,6 @@ The project directory is organized as follows:
 - **`pyproject.toml`**: Poetry configuration file for managing dependencies and project setup.
 
 - **`poetry.lock`**: Poetry lock file for deterministic dependency management.
-
-- **`Dockerfile`**: Dockerfile for containerizing the application.
 
 - **`Makefile`**: Makefile to automate common tasks like `make test` or `make run`.
 
@@ -86,15 +74,7 @@ Copy the example environment file and set up your environment variables:
 
 ## Running the Project
 
-1. **Start FastAPI Backend**
-Run the FastAPI server with:
-```bash
-run uvicorn src.main:app --host 0.0.0.0 --port 8000
-```
-
-This command starts the FastAPI backend on port 8000.
-
-2.**Start Streamlit Frontend**
+1.**Start Streamlit Frontend**
 In a new terminal window, start the Streamlit app with:
 ```bash
 streamlit run src/app.py
