@@ -1,6 +1,12 @@
-# Government Hackathon Template
+# Government Hackathon 2024 Project
 
-This is a template for Gov Hack 2024
+Patrick and Gang leverage the Australian writing style by empowering GenAI.
+
+## Meet the team
+  - Pichaphop Sunthornjittanon (Patrick)
+  - Supanuth Amorntiyanggoon (Scott)
+  - Jakrapun Sangchan (Jack)
+  - Jirarote Jirasirikul (JJ)
 
 ## Project Structure
 
@@ -23,7 +29,6 @@ The project directory is organized as follows:
   - `text_to_speech.py`: Google text-to-speech application to transform text file to voice .mp3.
   - `translator.py`: OpenAI application to translate English into the designated language.
   - `main.py`: FastAPI application script for the backend.
-
 
 
 - **`.env.example`**: Example environment variable file. Copy and rename to `.env` and set your configuration.
