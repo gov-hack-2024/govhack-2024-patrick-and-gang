@@ -7,6 +7,7 @@ from translator import Translator
 from text_to_speech import text_to_speech
 from content_creator import rag_workflow
 import pandas as pd
+from PIL import Image
 
 pd.set_option('display.max_colwidth', None)
 # Generate unique categories from mistakes
@@ -61,14 +62,36 @@ def gen_llm_content(input_content, list_highlight):
 
 # Define page functions
 def page_home():
-    st.title("Government Hackathon Project [Rename the Project)")
-    st.write(
-        "Welcome to the Government Hackathon Project. Use the navigation bar to explore different functionalities.[Some explanation/ picture/ diagram]")
 
+    st.title("GovAI Writer")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.write("""
+            Welcome to the AI-Powered Content Assistant, a tool designed to help streamline government communication, making it more accessible, accurate, and user-friendly. This application uses the latest AI technologies to enhance and optimize content for government publications. Here's what you can do with this tool:
+
+            ### Key Features:
+            - **AI Content Creation**: Automatically generate content based on a given objective and input documents (such as PDFs), ensuring that the generated content aligns with your goals.
+            
+            - **AI Content Editor**: Identify mistakes, suggest corrections, and improve clarity in your text using advanced AI-powered content review and rewriting tools following Australia Style Manual.
+            
+            - **AI Content Translator**: Translate content into multiple languages while maintaining context and meaning allowing CALD communities to access public communication.
+            
+            - **AI Text-to-Speech**: Convert written content into speech, helping make your materials accessible to a wider audience.
+
+            This tool is designed to help governments and organisations communicate more effectively with the public by ensuring content is clear, concise, and tailored to the audience. Whether you're editing, translating, or generating content from scratch, our AI solutions have you covered!
+
+    
+            """)
+    page_meet_the_team()
+
+    with col2:
+        st.image('image/editor_banner.jpg', width= 500)
 def page_content_creator():
     st.title("AI Content Creator")
     st.write(
-        "Add some banner/pic & explain sth incld functionality & link to the requirement")
+        "Automatically generate content based on a given objective and input documents (such as PDFs), ensuring that the generated content aligns with your goals.")
+    st.image('image/banner.jpg', use_column_width=True)
     pdf_input = st.file_uploader("Upload PDF file", type=('pdf'))
     objective = st.text_input("Objective")
     ai_gen_button = st.button("Generate Content by AI")
@@ -87,7 +110,9 @@ def page_content_creator():
 def page_rewrite_content():
     st.title("AI Content Editor")
     st.write(
-        "Add some banner/pic & explain sth incld functionality & link to the requirement")
+        " Identify mistakes, suggest corrections, and improve clarity in your text using advanced AI-powered content review and rewriting tools following Australia Style Manual.")
+
+    st.image('image/banner.jpg', use_column_width=True)
     # Define the folder path
     folder_path = 'raw_data'
 
@@ -143,8 +168,8 @@ def page_rewrite_content():
 
 def page_translator():
     st.title("AI Content Translator")
-    st.write(
-        "Add some banner/pic & explain sth incld functionality & link to the requirement")
+    st.write("Translate content into multiple languages while maintaining context and meaning allowing CALD communities to access public communication")
+    st.image('image/banner.jpg', use_column_width=True)
     # Define the folder path
     folder_path = 'raw_data'
 
@@ -180,9 +205,10 @@ def page_translator():
             )
 
 def page_reader():
-    st.write(
-        "Add some banner/pic & explain sth incld functionality & link to the requirement")
+
     st.title("AI Content Reader")
+    st.write("Convert written content into speech, helping make your materials accessible to a wider audience.")
+    st.image('image/banner.jpg', use_column_width=True)
     # Define the folder path
     folder_path = 'raw_data'
 
@@ -208,7 +234,44 @@ def page_reader():
             text_to_speech(text_input,play=False)
             st.audio('output.mp3', format="audio/wav", start_time=0)
 
+# Meet the Team section
+def page_meet_the_team():
+    st.title("Meet the Team")
+    st.write('')
 
+    # Define team members (names, roles, and LinkedIn profiles)
+    team = [
+        {
+            "name": "Patrick Sunthornjittanon",
+            "linkedin": "https://www.linkedin.com/in/pichaphop",# Replace with actual path to photo
+        },
+        {
+            "name": "Jack Sangchan",
+            "linkedin": "https://www.linkedin.com/in/jakrapun-s",
+        },
+        {
+            "name": "Scott Amorntiyanggoon",
+            "linkedin": "https://www.linkedin.com/in/supanutha",
+        },
+        {
+            "name": "Jirarote Jirasirikul(JJ)",
+            "linkedin": "https://www.linkedin.com/in/jirarotej/",
+        }
+    ]
+
+    # Display each team member in columns
+    cols = st.columns(len(team))
+
+    for i, member in enumerate(team):
+        with cols[i]:
+            # Display name and role
+            st.subheader(member["name"])
+            # st.write(member["role"])
+            # Display LinkedIn link
+            st.markdown(f"[LinkedIn Profile]({member['linkedin']})", unsafe_allow_html=True)
+    st.write('')
+    st.write('')
+    st.image('image/team_pic.jpg', width=900)
 
 # Main function to handle page routing
 def main():
@@ -221,10 +284,10 @@ def main():
                 color: black;
             }
             mistake-type1 {
-                background-color: yellow;
+                background-color: #fd242499;
             }
             mistake-type1-fix {
-                background-color: blue;
+                background-color: #78f92887;
             }
             .div-style-textarea {
                 background-color: rgb(38, 39, 48);
