@@ -15,13 +15,13 @@ The project directory is organized as follows:
   - `processed/`: Contains processed data files.
     - `cleaned_data.csv`: Example of processed data.
 
-- **`docs/`**: Documentation related to the project.
-  - `API_Documentation.md`: Documentation for API endpoints or other technical details.
-
 - **`src/`**: Source code for the project.
   - `__init__.py`: Initializes the `src` directory as a package.
-  - `app.py`: Streamlit application script for the frontend.
-  - `data_loader.py`: Module for loading and preprocessing data.
+  - `app.py`: Streamlit application script for the front end.
+  - `content_check.py`: OpenAI application to set up prompt OpenAI parameter and return the response.
+  - `content_creator.py`: OpenAI application to set up fassi backend on the fly database and generate the content based on the objective.
+  - `text_to_speech.py`: Google text-to-speech application to transform text file to voice .mp3.
+  - `translator.py`: OpenAI application to translate English into the designated language.
   - `main.py`: FastAPI application script for the backend.
 
 
