@@ -3,13 +3,12 @@
 Patrick and Gang leverage the Australian writing style by empowering GenAI.
 
 ## Meet the team
-  - Pichaphop Sunthornjittanon (Patrick)
-  - Supanuth Amorntiyanggoon (Scott)
-  - Jakrapun Sangchan (Jack)
-  - Jirarote Jirasirikul (JJ)
+  - [Pichaphop Sunthornjittanon (Patrick)](https://www.linkedin.com/in/pichaphop/)
+  - [Supanuth Amorntiyanggoon (Scott)](https://www.linkedin.com/in/supanutha/)
+  - [Jakrapun Sangchan (Jack)](https://www.linkedin.com/in/jakrapun-s/)
+  - [Jirarote Jirasirikul (JJ)](https://www.linkedin.com/in/jirarotej/)
 
 ## Project Structure
-
 The project directory is organized as follows:
 
 - **`.github/`**: Contains GitHub Actions workflows for Continuous Integration.
