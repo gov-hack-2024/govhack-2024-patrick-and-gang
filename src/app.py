@@ -6,8 +6,9 @@ from content_check import check_content
 from translator import Translator
 from text_to_speech import text_to_speech
 from content_creator import rag_workflow
+import pandas as pd
 
-
+pd.set_option('display.max_colwidth', None)
 # Generate unique categories from mistakes
 def gen_category_list(list_highlight):
     return {mistake_type for highlight in list_highlight for mistake_type in highlight["mistake_type"]}
@@ -47,6 +48,15 @@ def gen_markdown_content(input_content, list_highlight):
     fixed_content = fixed_content.replace('$', '\$')
 
     return original_content, fixed_content
+
+def gen_llm_content(input_content, list_highlight):
+    processed_content = input_content
+    for item in list_highlight:
+        mistake = item["mistake"]
+        suggestion = item["suggestion"]
+
+        processed_content = processed_content.replace(mistake, suggestion)
+    return processed_content
 
 
 # Define page functions
@@ -97,19 +107,34 @@ def page_rewrite_content():
 
     st.write('Edit Content')
     text_input = st.text_area('content_editor_text',file_content if selected_file else '', height=200,label_visibility = 'collapsed')
-    if st.button("Rewrite Content by AI"):
+    review_content_button =st.button("Rewrite Content by AI")
+
+    if review_content_button:
         with st.spinner('Processing...'):
             llm_output = check_content(text_input)
+            st.write('')
+            st.header('AI Recommended Editor')
             col1, col2 = st.columns(2)
             col1.write("Original Content")
             col2.write("Rewritten Content")
             original_text, fixed_text = gen_markdown_content(text_input, llm_output)
+
+
             col1.markdown(original_text, unsafe_allow_html=True)
             col2.markdown(fixed_text, unsafe_allow_html=True)
-            st.dataframe(llm_output, use_container_width=True)
+
+            st.write('')
+            st.header('AI Explanation')
+
+            st.table(llm_output)
+            llm_edit_mode = gen_llm_content(text_input, llm_output)
+
+            st.write('')
+            st.header('Editor Mode')
+            edit_text = st.text_area('Edit Mode',llm_edit_mode,height = 300,label_visibility = 'collapsed')
             st.download_button(
                 label="Save the content",
-                data=fixed_text,
+                data=edit_text,
                 # file_name="sample.txt",
                 mime="text/plain"
             )
